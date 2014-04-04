@@ -1,0 +1,184 @@
+body{
+	width:100%;
+	font-family: arial;
+	font-size: 13px;
+	background-image: url(../images/wood.jpg);
+}
+.signout{
+	width:35%;
+	float:right;
+	color:white;
+	margin-left:80px;
+}
+
+.align{
+	text-align: right;
+}
+
+
+.signout p{
+	width:50%;
+	margin-top: 7px;
+	float:left;
+	color:white;
+}
+
+.form{
+	width:25%;
+	float:right;
+	text-align: right;
+}
+
+.form p{
+	color:white;
+}
+
+.verticalLine{
+	width:20px;
+	height: 20px;
+	border-left: solid 1px blue;
+}
+
+.signin{
+	width:40%;
+	float: right;
+	padding-top: 15px;
+	margin-top: 5px;
+	padding-left: 10px;
+	color:white;
+}
+
+.col-sm-10{
+	width:80%;
+	margin-left: 10px;
+}
+
+.signup{
+	width:50%;
+	float:left;
+	padding-top: 15px;
+	margin-top: 5px;
+	padding-left: 10px;
+	color:white;
+	text-align: right;
+}
+.signinform{
+	width:96%;
+	background-color: white;
+}
+
+footer{
+	clear:both;
+	width:100%;
+	text-align: center;
+	color:red;
+}
+
+.img{
+	width:30%;
+	float: left;
+	margin:0 auto;
+}
+
+nav{
+	width:30%;
+	clear:both;
+	margin:0 auto;
+}
+
+h1{
+	width:70%;
+	margin:0;
+	color:red;
+	text-align: center;
+}
+
+h2{
+	color:red;
+	text-align: center;
+}
+
+.member {
+	width:40%;
+	height: 300px;
+	margin: 0 auto;
+}
+
+.size{
+	height:300px;
+}
+
+.lower{
+	clear:both;
+	width:100%;
+}
+
+.thumbnail{
+	background-color: transparent;
+	border:none;
+}
+.thumbnail p{
+	color:white;
+}
+
+.wrapper{
+	width:96%;
+	margin: 0 auto;
+}
+
+nav a:visited{
+	color:silver;
+}
+
+nav a:active{
+	color:brown;
+}
+
+nav a:hover{
+	color:red;
+}
+
+.project{
+	width:45%;
+	color:white;
+	float: left;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 770px){
+.signup, .signin{
+	float:none;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.signinform{
+	background-color: transparent;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
