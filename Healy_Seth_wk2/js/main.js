@@ -90,9 +90,26 @@ jQuery(document).ready(function($){
   
   
   $('ul.tabs li').last().addClass("tab_last");
-
-
-
 }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   

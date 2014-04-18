@@ -67,12 +67,17 @@ body{
 }
 
 
-.easter{
-	width:70px;
-	clear:both;
+#easter{
+	background-image: url(images/egg.jpg);
+  width: 400px;
+  height: 400px;
 	float:right;
 	margin-right: 50px;
-	color:transparent;
+  clear:both;
+}
+
+#box {
+  color:transparent;
 }
 
 .back{
