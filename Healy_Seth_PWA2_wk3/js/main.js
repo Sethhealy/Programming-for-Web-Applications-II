@@ -1,4 +1,3 @@
-                                    //slider start//
 jQuery(document).ready(function($){
 
   var sliderCount= $('#myslider ul li').length;
@@ -95,7 +94,7 @@ jQuery(document).ready(function($){
 
 
 
-$(function(){
+
   $('#signinButton').click(function(e){
      e.preventDefault();
     var user =$('#user').val();
@@ -120,6 +119,31 @@ $(function(){
       }
     });
   });
+
+
+$('#register').on('click', function(){
+  var username= $('#username').val(),
+  email= $('#email').val(),
+  password= $('#password').val();
+
+  $.ajax({
+    url:'xhr/register.php',
+    type:'post',
+    datatype:'json',
+    data:{
+      username:username,
+      email:email,
+      password:password
+    },
+
+    success: function(response){
+      if (response.error){
+        alert(reponse.error);
+      }else{
+        window.location.assign('admin.html');
+      }
+    }
+  });
 });
 
 $('.projectsbtn').on('click', function(e){
@@ -127,36 +151,108 @@ $('.projectsbtn').on('click', function(e){
   window.location.assign('projects.html');
 });
 
-
-var welcomeSound = document.getElementById('welcomeSound');
-var welcomeTxt=document.getElementById('welcomeTxt');
-welcomeTxt.onmouseover=function(){
- welcomeSound.play();
- return false;
-};
-
-
-welcomeTxt.onmouseout=function(){
- welcomeSound.pause().delay(1000);
- console.log("click")
-};
-
-
-
 $('.addbtn').on('click', function(e){
   e.preventDefault();
   window.location.assign('add.html');
 });
 
 
-
-$('#signOut').click(function(e){
-  console.log('logout');
+$('#addButton').on('click', function(e){
   e.preventDefault();
-  $.get('xhr/logout.php', function(){
-    window.location.assign('index.html')
-  })
+  var projName =$('#projectName').val(),
+  projDesc =$('#projectDescription').val(),
+  projDue =$('#projectDueDate').val(),
+  status =$('#projectStatus').val();
+
+  $.ajax({
+    url: "xhr/new_project.php",
+    type: "post",
+    datatype:"json",
+    data:{
+      projectName: projName,
+      projectDescription: projDesc,
+      dueDate: projDue,
+      status:status
+    },
+    success:function(response){
+      console.log('testing for success');
+
+      if(response.error){
+        alert(response.error);
+      } else{
+        window.location.assign("projects.html");
+      };
+    }
+  });
 });
+
+var projects = function(){
+
+    $.ajax({
+      url: 'xhr/get_projects.php',
+      type: 'get',
+      dataType:'json',
+      success: function(response){
+        if(response.error){
+          console.log(response.error);
+        }else{
+          for(var i=0, j=response.projects.length; i<j; i++){
+            var result=response.projects[i];
+
+            $(".projects").append(
+              '<div style="border:1px solid black">'+
+              " Project ID:" + result.id + "<br>" +
+              "Project Name: " + result.projectName + "<br>" +
+              "Project Description: " + result.projectDescription + "<br>" +
+              '<button class="deletebtn"> Delete </button>'
+              +'</div> <br>'
+              );
+          };
+
+          $('.deletebtn').on('click', function(e){
+            console.log('test delete');
+
+            $.ajax({
+              url: 'xhr/delete_project.php',
+              data:{
+                projectID: result.id
+              },
+              type: 'POST',
+              dataType: 'json',
+              success: function(response){
+                console.log('testing for success');
+
+                if(response.error){
+                  alert(response.error);
+                } else{
+                  window.location.assign("projects.html");
+                };
+              }
+            });
+          });
+        
+   
+
+// $('#signOut').click(function(e){
+//   console.log('logout');
+//   e.preventDefault();
+//   $.get('xhr/logout.php', function(){
+//     window.location.assign('index.html')
+//   })
+// });
+
+// var welcomeSound = document.getElementById('welcomeSound');
+// var welcomeTxt=document.getElementById('welcomeTxt');
+// welcomeTxt.onmouseover=function(){
+//  welcomeSound.play();
+//  return false;
+// };
+
+
+// welcomeTxt.onmouseout=function(){
+//  welcomeSound.pause().delay(1000);
+//  console.log("click")
+// };
 
 });
 
