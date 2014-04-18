@@ -68,12 +68,10 @@ body{
 
 
 #easter{
-	background-image: url(images/egg.jpg);
   width: 400px;
   height: 400px;
 	float:right;
 	margin-right: 50px;
-  clear:both;
 }
 
 #box {
@@ -504,45 +502,12 @@ body:after {
 }
 
 
-				/*Accordian*/
-
-	.accordion {
-   		margin: 50px; 
-      text-align: center;
-      width:400px;
-      color:white;
-      float:left;
-	}
-	
-   	dt, dd {
-      padding: 10px;
-      border: 1px solid black;
-      margin-left: 0; 
-	}
-      dt, dd:last {
-        border-bottom: 1px solid black; 
-      }
-	  
-      .accordian a {
-        display: block;
-        color: black;
-        font-weight: bold;
-      }
-   
-  dd {
-     border-top: 0; 
-     font-size: 12px;
-  }
-  dd:last {
-       border-top: 1px solid white;
-       position: relative;
-       top: -1px;
-     }
+			
 						/*Tabs*/
 
 .pages{
 	margin-top: 47px;
-	width:400px;
+	width:100%;
 	float:left;
 }
 
@@ -553,7 +518,7 @@ ul.tabs {
 	list-style: none;
 	height: 32px;
 	border-bottom: 1px solid black;
-	width: 400px;
+	width: 100%;
 	color:white;
 
 }
@@ -584,7 +549,7 @@ ul.tabs li:hover {
 }
 
 ul.tabs li.active {
-	background-color: transparent;
+	background-color: red;
 	color: white;
 	border-bottom: 1px solid black;
 	display: block;

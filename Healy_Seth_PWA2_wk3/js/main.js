@@ -90,14 +90,75 @@ jQuery(document).ready(function($){
   
   
   $('ul.tabs li').last().addClass("tab_last");
-}); 
 
 
 
 
 
+$(function(){
+  $('#signinButton').click(function(e){
+     e.preventDefault();
+    var user =$('#user').val();
+    var pass =$('#pass').val();
+    console.log("This notifies you if the password is working");
+    
+    $.ajax({
+      url:'xhr/login.php',
+      type:'post',
+      dataType:'json',
+      data:{
+        username:user,
+        password:pass
+      },
+      success:function(response){
+        console.log("Test User");
+        if(response.error){
+          alert(response.error);
+        } else{
+          window.location.assign('admin.html')
+        };
+      }
+    });
+  });
+});
+
+$('.projectsbtn').on('click', function(e){
+  e.preventDefault();
+  window.location.assign('projects.html');
+});
 
 
+var welcomeSound = document.getElementById('welcomeSound');
+var welcomeTxt=document.getElementById('welcomeTxt');
+welcomeTxt.onmouseover=function(){
+ welcomeSound.play();
+ return false;
+};
+
+
+welcomeTxt.onmouseout=function(){
+ welcomeSound.pause().delay(1000);
+ console.log("click")
+};
+
+
+
+$('.addbtn').on('click', function(e){
+  e.preventDefault();
+  window.location.assign('add.html');
+});
+
+
+
+$('#signOut').click(function(e){
+  console.log('logout');
+  e.preventDefault();
+  $.get('xhr/logout.php', function(){
+    window.location.assign('index.html')
+  })
+});
+
+});
 
 
 

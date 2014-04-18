@@ -410,14 +410,10 @@ $(function(){
 
 }).call(this);
 
-$("#easter").hide();
-
-
-
-$("#box").click(function() {
-  $("#easter").show();
+$( "#clickme" ).click(function() {
+  $( "#easter" ).toggle( "slow", function(){
+  });
 });
-
 
   
   // Expand Panel
