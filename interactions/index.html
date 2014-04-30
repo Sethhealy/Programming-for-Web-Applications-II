@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	</head>
+	<style>
+	ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+  li { margin: 5px; padding: 5px; width: 150px; }
+	#droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  #draggable1, #draggable-nonvalid { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #resizable { width: 200px; clear:both; height: 150px; padding: 5px; }
+  #resizable h3 { text-align: center; margin: 0; }
+  h1{clear:both;}
+  #feedback { font-size: 1.4em; }
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  #sortable1 { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable1 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  html>body #sortable1 li { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+  body{width:600px; margin: 0 auto; background-color: lightblue;}
+	</style>
+
+</head>
+<body>
+ <h1> Sort through projects and add new </h1>
+<ul>
+  <li id="draggable" class="ui-state-highlight">Drag me down</li>
+</ul>
+ 
+<ul id="sortable">
+  <li class="ui-state-default">Item 1</li>
+  <li class="ui-state-default">Item 2</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">Item 5</li>
+</ul>
+ 
+<h1> dragging fun </h1>
+<div id="draggable-nonvalid" class="ui-widget-content">
+  <p>I'm draggable but can't be dropped</p>
+</div>
+ 
+<div id="draggable1" class="ui-widget-content">
+  <p>Drag me to my target</p>
+</div>
+ 
+<div id="droppable" class="ui-widget-header">
+  <p>accept: '#draggable'</p>
+</div>
+
+<h1>Max and min size effects </h1>
+
+<div id="resizable" class="ui-widget-content">
+  <h3 class="ui-widget-header">Resize larger / smaller</h3>
+</div>
+ <h1> Selectable fun </h1>
+ <p id="feedback">
+<span>You've selected:</span> <span id="select-result">none</span>.
+</p>
+ 
+<ol id="selectable">
+  <li class="ui-widget-content">Item 1</li>
+  <li class="ui-widget-content">Item 2</li>
+  <li class="ui-widget-content">Item 3</li>
+  <li class="ui-widget-content">Item 4</li>
+  <li class="ui-widget-content">Item 5</li>
+  <li class="ui-widget-content">Item 6</li>
+</ol>
+
+<h1>Sortable fun</h1>
+<ul id="sortable1">
+  <li class="ui-state-default">Item 1</li>
+  <li class="ui-state-default">Item 2</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">Item 5</li>
+  <li class="ui-state-default">Item 6</li>
+  <li class="ui-state-default">Item 7</li>
+</ul>
+</body>
+<script>
+$(function() {
+    $( "#sortable" ).sortable({
+      revert: true
+    });
+    $( "#draggable" ).draggable({
+      connectToSortable: "#sortable",
+      helper: "clone",
+      revert: "invalid"
+    });
+    $( "ul, li" ).disableSelection();
+});
+
+
+ 	$(function() {
+    $( "#draggable, #draggable-nonvalid" ).draggable();
+    $( "#droppable" ).droppable({
+      accept: "#draggable",
+      activeClass: "ui-state-hover",
+      hoverClass: "ui-state-active",
+      drop: function( event, ui ) {
+        $( this )
+          .addClass( "ui-state-highlight" )
+          .find( "p" )
+            .html( "Dropped!" );
+      }
+    });
+  });
+
+ 	$(function() {
+    $( "#resizable" ).resizable({
+      maxHeight: 250,
+      maxWidth: 350,
+      minHeight: 150,
+      minWidth: 200
+    });
+  });
+
+ 	$(function() {
+    $( "#selectable" ).selectable({
+      stop: function() {
+        var result = $( "#select-result" ).empty();
+        $( ".ui-selected", this ).each(function() {
+          var index = $( "#selectable li" ).index( this );
+          result.append( " #" + ( index + 1 ) );
+        });
+      }
+    });
+  });
+
+ 	$(function() {
+    $( "#sortable1" ).sortable({
+      placeholder: "ui-state-highlight"
+    });
+    $( "#sortable1" ).disableSelection();
+  });
+  </script>
+</html>
